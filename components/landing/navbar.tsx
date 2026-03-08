@@ -15,6 +15,11 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState("hero")
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -41,7 +46,14 @@ export function Navbar() {
   }, [])
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm shadow-foreground/5">
+    <nav
+      className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm shadow-foreground/5"
+      style={{
+        opacity: mounted ? 1 : 0,
+        transform: mounted ? "translateY(0)" : "translateY(-20px)",
+        transition: "opacity 0.6s ease-out, transform 0.6s ease-out"
+      }}
+    >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
 
@@ -92,11 +104,11 @@ export function Navbar() {
           </button>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation — animated slide */}
         {isOpen && (
-          <div className="md:hidden py-4 border-t border-border/30 bg-background/95 backdrop-blur-md">
+          <div className="md:hidden py-4 border-t border-border/30 bg-background/95 backdrop-blur-md animate-slide-down">
             <div className="flex flex-col gap-1">
-              {navLinks.map((link) => {
+              {navLinks.map((link, index) => {
                 const id = link.href.replace("#", "")
                 const isActive = activeSection === id
                 return (
@@ -106,7 +118,9 @@ export function Navbar() {
                     className="text-sm uppercase tracking-[0.12em] font-medium py-3 px-2 border-l-2 transition-all duration-200"
                     style={{
                       color: isActive ? "var(--primary)" : "var(--muted-foreground)",
-                      borderColor: isActive ? "var(--primary)" : "transparent"
+                      borderColor: isActive ? "var(--primary)" : "transparent",
+                      opacity: 0,
+                      animation: `stagger-fade-in 0.3s ease-out ${index * 0.05}s forwards`
                     }}
                     onClick={() => setIsOpen(false)}
                   >
@@ -117,6 +131,10 @@ export function Navbar() {
               <a
                 href="#demo"
                 className="mt-3 text-sm uppercase tracking-[0.12em] font-semibold text-primary border border-primary/40 text-center py-3 rounded-full"
+                style={{
+                  opacity: 0,
+                  animation: `stagger-fade-in 0.3s ease-out ${navLinks.length * 0.05}s forwards`
+                }}
                 onClick={() => setIsOpen(false)}
               >
                 Comenzar

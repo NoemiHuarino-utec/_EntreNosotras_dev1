@@ -17,7 +17,7 @@ function MemberCard({ member, index, size = "md" }: { member: typeof team[0], in
     return (
         <ScrollReveal direction="up" delay={index * 100}>
             <div
-                className="relative group cursor-default rounded-3xl overflow-hidden flex"
+                className="relative group cursor-default rounded-3xl overflow-hidden flex hover:-translate-y-2 hover:shadow-xl transition-all duration-300"
                 style={{ height: isLg ? "260px" : "220px", background: cardBg }}
             >
                 {/* Columna izquierda — foto */}
@@ -25,7 +25,7 @@ function MemberCard({ member, index, size = "md" }: { member: typeof team[0], in
                     <img
                         src={member.photo}
                         alt={member.name}
-                        className="w-full h-full object-cover object-top"
+                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                     />
                     <div
                         className="absolute inset-y-0 right-0 w-12"
@@ -37,7 +37,7 @@ function MemberCard({ member, index, size = "md" }: { member: typeof team[0], in
                 <div className="flex-1 flex flex-col justify-end px-5 pb-6 pt-4 relative overflow-hidden">
                     {/* Iniciales decorativas */}
                     <span
-                        className="absolute -bottom-3 -right-2 font-black leading-none select-none pointer-events-none"
+                        className="absolute -bottom-3 -right-2 font-black leading-none select-none pointer-events-none group-hover:opacity-20 transition-opacity duration-300"
                         style={{ fontSize: isLg ? "8rem" : "6.5rem", color: member.color, opacity: 0.12 }}
                         aria-hidden
                     >
@@ -45,8 +45,8 @@ function MemberCard({ member, index, size = "md" }: { member: typeof team[0], in
                     </span>
 
                     <div className="relative z-10">
-                        <div className="w-3 h-3 rounded-full mb-3" style={{ backgroundColor: member.color }} />
-                        <h3 className={`font-bold text-foreground leading-tight ${isLg ? "text-2xl" : "text-xl"}`}>
+                        <div className="w-3 h-3 rounded-full mb-3 animate-dot-pulse" style={{ backgroundColor: member.color, color: member.color }} />
+                        <h3 className={`font-bold text-foreground leading-tight group-hover:translate-x-1 transition-transform duration-300 ${isLg ? "text-2xl" : "text-xl"}`}>
                             {member.name}
                         </h3>
                         <div className="mt-2 flex items-center gap-3">
@@ -54,7 +54,7 @@ function MemberCard({ member, index, size = "md" }: { member: typeof team[0], in
                                 href={member.linkedin}
                                 target={member.linkedin !== "#" ? "_blank" : undefined}
                                 rel={member.linkedin !== "#" ? "noopener noreferrer" : undefined}
-                                className="flex items-center gap-1.5 w-fit transition-opacity duration-200 opacity-40 hover:opacity-100"
+                                className="flex items-center gap-1.5 w-fit transition-all duration-200 opacity-40 hover:opacity-100 hover:translate-x-0.5"
                                 aria-label={`LinkedIn de ${member.name}`}
                             >
                                 <Linkedin className="w-3.5 h-3.5" style={{ color: member.color }} />
@@ -65,7 +65,7 @@ function MemberCard({ member, index, size = "md" }: { member: typeof team[0], in
                                     href={member.github}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center gap-1.5 w-fit transition-opacity duration-200 opacity-40 hover:opacity-100"
+                                    className="flex items-center gap-1.5 w-fit transition-all duration-200 opacity-40 hover:opacity-100 hover:translate-x-0.5"
                                     aria-label={`GitHub de ${member.name}`}
                                 >
                                     <Github className="w-3.5 h-3.5" style={{ color: member.color }} />
@@ -89,16 +89,20 @@ export function Team() {
             <div className="flex-1 flex flex-col justify-center py-16">
                 <div className="container mx-auto px-4">
 
-                    {/* Section title */}
-                    <div className="flex items-center gap-4 mb-6">
-                        <span className="text-3xl md:text-4xl font-black uppercase text-primary leading-none tracking-tight whitespace-nowrap">Nuestro Equipo</span>
-                        <div className="flex-1 h-px bg-foreground/15" />
-                        <span className="text-xs font-mono text-foreground/35 tracking-[0.2em] flex-shrink-0">07</span>
-                    </div>
+                    {/* Section title — animated */}
+                    <ScrollReveal direction="none">
+                        <div className="flex items-center gap-4 mb-6">
+                            <span className="text-3xl md:text-4xl font-black uppercase text-primary leading-none tracking-tight whitespace-nowrap">Nuestro Equipo</span>
+                            <div className="flex-1 h-px bg-foreground/15 origin-left" style={{ animation: "expand-width 1s ease-out 0.3s both" }} />
+                            <span className="text-xs font-mono text-foreground/35 tracking-[0.2em] flex-shrink-0">07</span>
+                        </div>
+                    </ScrollReveal>
 
-                    <p className="text-lg text-muted-foreground mb-14 max-w-lg">
-                        Mujeres creando para mujeres — un equipo apasionado por la educación en salud femenina.
-                    </p>
+                    <ScrollReveal direction="up" delay={50}>
+                        <p className="text-lg text-muted-foreground mb-14 max-w-lg">
+                            Mujeres creando para mujeres — un equipo apasionado por la educación en salud femenina.
+                        </p>
+                    </ScrollReveal>
 
                     {/* Fila 1 — 3 personas */}
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">

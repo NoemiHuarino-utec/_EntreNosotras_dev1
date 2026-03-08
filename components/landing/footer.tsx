@@ -1,11 +1,8 @@
+"use client"
+
 import { Heart, Instagram, Mail } from "lucide-react"
 
 const currentYear = new Date().getFullYear()
-
-const socialLinks = [
-  { icon: Instagram, href: "#", label: "Instagram" },
-  { icon: Mail, href: "#", label: "Email" }
-]
 
 const footerLinks = [
   {
@@ -13,67 +10,69 @@ const footerLinks = [
     links: [
       { name: "Características", href: "#features" },
       { name: "Demo", href: "#demo" },
-      { name: "Roadmap", href: "#roadmap" }
-    ]
+      { name: "Roadmap", href: "#roadmap" },
+    ],
   },
   {
-    title: "Recursos",
+    title: "Nosotras",
     links: [
-      { name: "Biblioteca", href: "#" },
-      { name: "Tips", href: "#" },
-      { name: "FAQ", href: "#" }
-    ]
+      { name: "El Problema", href: "#problema" },
+      { name: "Solución", href: "#solucion" },
+      { name: "Equipo", href: "#team" },
+    ],
   },
   {
     title: "Legal",
     links: [
       { name: "Privacidad", href: "#" },
-      { name: "Términos", href: "#" }
-    ]
-  }
+      { name: "Términos", href: "#" },
+    ],
+  },
 ]
 
 export function Footer() {
   return (
-    <footer className="bg-foreground text-card py-16">
-      <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
+    <footer style={{ background: "#1a1025" }} className="pt-20 pb-10 px-4">
+      <div className="container mx-auto">
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
+
           {/* Brand */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
-                <Heart className="w-5 h-5 text-primary-foreground" />
-              </div>
-              <span className="text-xl font-bold">EntreNosotras</span>
-            </div>
-            <p className="text-card/70 mb-6 max-w-sm leading-relaxed">
-              Un espacio seguro para aprender sobre salud menstrual y reproductiva. 
-              Información confiable, sin tabúes.
+            <a href="#hero" className="font-black text-2xl text-white tracking-tight block mb-4">
+              Entre<span style={{ color: "#a78bfa" }}>Nosotras</span>
+            </a>
+            <p className="text-white/35 text-sm max-w-xs leading-relaxed mb-6">
+              Un espacio seguro para aprender sobre salud menstrual y reproductiva. Sin tabúes.
             </p>
-            <div className="flex gap-3">
-              {socialLinks.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.href}
-                  className="w-10 h-10 bg-card/10 rounded-full flex items-center justify-center hover:bg-primary hover:scale-110 transition-all duration-300"
-                  aria-label={social.label}
-                >
-                  <social.icon className="w-5 h-5" />
-                </a>
-              ))}
+            <div className="flex items-center gap-3">
+              <a
+                href="#"
+                aria-label="Instagram"
+                className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-white/35 hover:text-white hover:border-white/30 transition-all duration-200"
+              >
+                <Instagram className="w-4 h-4" />
+              </a>
+              <a
+                href="#"
+                aria-label="Email"
+                className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-white/35 hover:text-white hover:border-white/30 transition-all duration-200"
+              >
+                <Mail className="w-4 h-4" />
+              </a>
             </div>
           </div>
 
           {/* Links */}
-          {footerLinks.map((column, index) => (
-            <div key={index}>
-              <h4 className="font-semibold mb-4">{column.title}</h4>
+          {footerLinks.map((col) => (
+            <div key={col.title}>
+              <h4 className="text-xs font-semibold uppercase tracking-[0.15em] text-white/50 mb-4">{col.title}</h4>
               <ul className="space-y-3">
-                {column.links.map((link, linkIndex) => (
-                  <li key={linkIndex}>
-                    <a 
-                      href={link.href} 
-                      className="text-card/70 hover:text-primary transition-colors"
+                {col.links.map((link) => (
+                  <li key={link.name}>
+                    <a
+                      href={link.href}
+                      className="text-sm text-white/30 hover:text-white transition-colors duration-200"
                     >
                       {link.name}
                     </a>
@@ -82,17 +81,20 @@ export function Footer() {
               </ul>
             </div>
           ))}
+
         </div>
 
+        {/* Divider */}
+        <div className="w-full h-px bg-white/[0.06] mb-8" />
+
         {/* Bottom */}
-        <div className="border-t border-card/10 pt-8 flex flex-col items-center gap-4">
-          <p className="text-card/60 text-sm">
-            © {currentYear} EntreNosotras. Todos los derechos reservados.
-          </p>
-          <p className="text-card text-lg flex items-center gap-2 font-medium">
-            Hecho con <Heart className="w-5 h-5 text-primary fill-primary animate-pulse" aria-label="amor" /> para mujeres.
-          </p>
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-white/20 text-xs">
+          <span>© {currentYear} EntreNosotras. Todos los derechos reservados.</span>
+          <span className="flex items-center gap-1">
+            Hecho con <Heart className="w-3 h-3 fill-current text-pink-400/60" /> para mujeres.
+          </span>
         </div>
+
       </div>
     </footer>
   )
