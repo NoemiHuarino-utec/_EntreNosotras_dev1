@@ -5,10 +5,10 @@ import { ScrollReveal } from "@/components/ui/scroll-reveal"
 import { Button } from "@/components/ui/button"
 
 const benefits = [
-  { number: "01", highlight: "Verificada", rest: " y confiable en todo momento" },
-  { number: "02", highlight: "Sin jerga médica", rest: " — respuestas que se entienden" },
-  { number: "03", highlight: "Herramientas", rest: " interactivas para tu ciclo" },
-  { number: "04", highlight: "Disponible 24/7", rest: " cuando más lo necesitas" },
+  { number: "01", highlight: "Verificada", rest: " y confiable en todo momento", bg: "#ede9fe" },
+  { number: "02", highlight: "Sin jerga médica", rest: " — respuestas que se entienden", bg: "#fdf2fb" },
+  { number: "03", highlight: "Herramientas", rest: " interactivas para tu ciclo", bg: "#fce7f3" },
+  { number: "04", highlight: "Disponible 24/7", rest: " cuando más lo necesitas", bg: "#f5f0ff" },
 ]
 
 export function Solution() {
@@ -29,105 +29,59 @@ export function Solution() {
           <span className="text-xs font-mono text-foreground/35 tracking-[0.2em] flex-shrink-0">03</span>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-20 items-center max-w-7xl mx-auto">
+        {/* Grid — manifesto izquierda, beneficios derecha */}
+        <div className="w-full h-px bg-foreground/10" />
+        <div className="grid grid-cols-1 md:grid-cols-2">
 
-          {/* Visual — Quote / manifesto card */}
-          <ScrollReveal direction="left">
-            <div className="relative order-2 lg:order-1">
-              <div className="relative bg-card rounded-[2rem] p-10 border border-border/60 shadow-2xl overflow-hidden">
-                {/* Accent top bar */}
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-violet-400 to-accent" />
-
-                {/* Decorative quote mark */}
-                <div
-                  className="text-[9rem] font-serif leading-none text-primary/10 -mt-6 -mb-6 select-none"
-                  aria-hidden
-                >
-                  &ldquo;
-                </div>
-
-                <blockquote className="text-2xl md:text-3xl font-bold text-foreground leading-tight mb-5">
-                  Tu salud merece respuestas reales, no silencios ni mitos.
-                </blockquote>
-
-                <p className="text-muted-foreground text-base leading-relaxed mb-8">
-                  EntreNosotras nació de una necesidad compartida: un espacio donde las
-                  mujeres puedan aprender sobre su cuerpo sin vergüenza y con información
-                  que realmente importa.
-                </p>
-
-                {/* Platform credit line */}
-                <div className="flex items-center gap-3 pt-6 border-t border-border/50">
-                  <div className="w-9 h-9 bg-gradient-to-br from-primary to-violet-600 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-white text-xs font-bold">EN</span>
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-foreground">EntreNosotras</p>
-                    <p className="text-xs text-muted-foreground">Plataforma de salud menstrual</p>
-                  </div>
-                </div>
-
-                {/* Background texture */}
-                <div className="absolute bottom-0 right-0 w-48 h-48 bg-gradient-to-tl from-primary/5 to-transparent rounded-full pointer-events-none" />
-              </div>
-
-              {/* Floating badge */}
-              <div className="absolute -top-4 -right-4 bg-gradient-to-r from-primary to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg animate-float">
-                100% Gratuito
-              </div>
-
-              {/* Stats badge */}
-              <div className="absolute -bottom-4 -left-4 bg-card/90 backdrop-blur-sm rounded-2xl p-4 shadow-xl border border-border/50 animate-float-slow hidden md:block">
-                <p className="text-2xl font-bold text-primary leading-none">+1,000</p>
-                <p className="text-xs text-muted-foreground mt-1">usuarias activas</p>
-              </div>
+          {/* Izquierda — Manifesto */}
+          <ScrollReveal direction="left" className="md:border-r border-foreground/[0.08] relative">
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+              <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-pink-300/20 rounded-full blur-[80px]" />
             </div>
-          </ScrollReveal>
-
-          {/* Text content */}
-          <ScrollReveal direction="right">
-            <div className="order-1 lg:order-2">
-              {/* Heading */}
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 text-balance leading-tight">
-                Tu espacio privado de{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-600">
-                  aprendizaje
+            <div className="py-10 md:py-16 md:pr-16 flex flex-col justify-center h-full relative z-10">
+              <p className="text-xs font-mono text-primary/60 uppercase tracking-[0.3em] mb-6">Nuestra misión</p>
+              <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-tight text-balance">
+                Tu salud merece respuestas reales,{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-violet-400">
+                  no silencios ni mitos.
                 </span>
               </h2>
-
-              {/* Description */}
-              <p className="text-lg text-muted-foreground mb-10 text-pretty leading-relaxed max-w-lg">
-                EntreNosotras proporciona un espacio privado, comprensivo y accesible
-                donde las mujeres pueden aprender sobre su salud menstrual y reproductiva
-                de forma segura y sin juicios.
+              <p className="text-base text-muted-foreground mt-6 leading-relaxed">
+                Un espacio donde las mujeres pueden aprender sobre su cuerpo sin vergüenza
+                y con información que realmente importa.
               </p>
-
-              {/* Benefits — numbered editorial list */}
-              <ul className="space-y-0 divide-y divide-border/50 mb-10">
-                {benefits.map((benefit, index) => (
-                  <li key={index} className="group flex items-baseline gap-4 py-4">
-                    <span className="text-xs font-mono text-muted-foreground/50 flex-shrink-0 w-6 group-hover:text-primary transition-colors duration-200">
-                      {benefit.number}
-                    </span>
-                    <span className="text-base text-foreground">
-                      <span className="text-primary font-semibold">{benefit.highlight}</span>
-                      {benefit.rest}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-
-              {/* CTA */}
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-white rounded-full px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-xl hover:shadow-primary/25 transition-all duration-300 group"
-              >
-                Comenzar ahora
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
+              <div className="mt-10">
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-primary to-violet-600 hover:from-primary/90 hover:to-violet-600/90 text-white rounded-full px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-xl hover:shadow-primary/25 transition-all duration-300 group"
+                  asChild
+                >
+                  <a href="#demo">
+                    Comenzar ahora
+                    <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </a>
+                </Button>
+              </div>
             </div>
           </ScrollReveal>
+
+          {/* Derecha — Beneficios en columna */}
+          <div className="divide-y divide-foreground/[0.08]">
+            {benefits.map((benefit, index) => (
+              <ScrollReveal key={index} direction="right" delay={index * 80}>
+                <div className="py-8 md:pl-12 px-6 group cursor-default" style={{ background: `linear-gradient(to right, ${benefit.bg}, transparent)` }}>
+                  <span className="text-xs font-mono text-foreground/30 block mb-3">
+                    {benefit.number}
+                  </span>
+                  <p className="text-2xl font-bold mb-2" style={{ color: "#a280f9" }}>{benefit.highlight}</p>
+                  <p className="text-base text-muted-foreground">{benefit.rest}</p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+
         </div>
+        <div className="w-full h-px bg-foreground/10" />
       </div>
       </div>
     </section>

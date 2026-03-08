@@ -22,10 +22,16 @@ const problems = [
 
 export function Problem() {
   return (
-    <section id="problema" className="min-h-screen flex flex-col bg-background relative overflow-hidden">
+    <section id="problema" className="min-h-screen flex flex-col bg-gradient-to-b from-primary/15 via-primary/5 to-background relative overflow-hidden">
+
+{/* Ambient glows */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-black/10 rounded-full blur-[100px]" />
+      </div>
 
       {/* Content */}
-      <div className="flex-1 flex flex-col justify-center py-16">
+      <div className="flex-1 flex flex-col justify-center py-16 relative z-10">
         <div className="container mx-auto px-4">
 
           {/* Section title */}
@@ -67,7 +73,7 @@ export function Problem() {
             delay={340}
           >
             <div className="py-10 md:py-14 md:pl-10 flex flex-col justify-between h-full">
-              <span className="text-primary/50 text-xs font-bold uppercase tracking-[0.25em] block mb-6">
+              <span className="text-primary/60 text-xs font-bold uppercase tracking-[0.25em] block mb-6">
                 Dato clave
               </span>
               <div>
@@ -86,7 +92,7 @@ export function Problem() {
 
         </div>
 
-        <div className="w-full h-px bg-foreground/10" />
+        <div className="w-full h-px bg-white/10" />
 
         </div>
       </div>
