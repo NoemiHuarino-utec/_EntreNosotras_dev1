@@ -1,5 +1,3 @@
-# 🌸 EntreNosotras – The Digital Big Sister
-
 🌎 **Language / Idioma**
 
 [English](#english) | [Español](#español)
