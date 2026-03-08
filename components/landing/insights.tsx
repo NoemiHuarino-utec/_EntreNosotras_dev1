@@ -55,8 +55,8 @@ export function Insights() {
           </div>
 
           {/* Survey context */}
-          <p className="text-base text-foreground/50 mb-12 max-w-lg">
-            Encuestamos a <span className="text-foreground/80 font-semibold">+200 mujeres</span> para entender sus necesidades reales en temas de salud menstrual y reproductiva.
+          <p className="text-xl text-foreground/65 mb-12 max-w-xl">
+            Encuestamos a <span className="text-foreground font-semibold">+200 mujeres</span> para entender sus necesidades reales en temas de salud menstrual y reproductiva.
           </p>
 
         {/* Top rule */}
@@ -86,7 +86,7 @@ export function Insights() {
                 </h3>
 
                 {/* Description */}
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <p className="text-lg text-foreground/75 leading-relaxed">
                   {insight.description}
                 </p>
               </div>
