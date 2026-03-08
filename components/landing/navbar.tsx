@@ -1,8 +1,7 @@
 "use client"
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Heart, Menu, X } from "lucide-react"
+import { useState, useEffect } from "react"
+import { Menu, X } from "lucide-react"
 
 const navLinks = [
   { name: "Inicio", href: "#hero" },
@@ -14,37 +13,73 @@ const navLinks = [
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const [activeSection, setActiveSection] = useState("hero")
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20)
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
+
+  useEffect(() => {
+    const sectionIds = navLinks.map(l => l.href.replace("#", ""))
+    const observers: IntersectionObserver[] = []
+
+    sectionIds.forEach(id => {
+      const el = document.getElementById(id)
+      if (!el) return
+      const observer = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActiveSection(id) },
+        { threshold: 0.4 }
+      )
+      observer.observe(el)
+      observers.push(observer)
+    })
+
+    return () => observers.forEach(o => o.disconnect())
+  }, [])
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm shadow-foreground/5">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
+
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2">
-            <div className="w-9 h-9 bg-primary rounded-xl flex items-center justify-center">
-              <Heart className="w-5 h-5 text-primary-foreground" />
-            </div>
-            <span className="font-bold text-lg text-foreground">EntreNosotras</span>
+          <a href="#hero" className="flex items-center gap-2 group">
+            <span className="font-black text-xl text-foreground tracking-tight">Entre<span className="text-primary">Nosotras</span></span>
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-muted-foreground hover:text-primary transition-colors font-medium"
-              >
-                {link.name}
-              </a>
-            ))}
+          <div className="hidden md:flex items-center gap-10">
+            {navLinks.map((link) => {
+              const id = link.href.replace("#", "")
+              const isActive = activeSection === id
+              return (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="relative text-sm uppercase tracking-[0.12em] font-medium transition-colors duration-200 pb-1 group"
+                  style={{ color: isActive ? "var(--primary)" : "var(--muted-foreground)" }}
+                >
+                  {link.name}
+                  <span
+                    className="absolute bottom-0 left-0 h-[2px] bg-primary transition-all duration-300 rounded-full"
+                    style={{ width: isActive ? "100%" : "0%" }}
+                  />
+                </a>
+              )
+            })}
           </div>
 
           {/* Desktop CTA */}
           <div className="hidden md:block">
-            <Button className="rounded-full bg-primary hover:bg-primary/90 text-primary-foreground">
+            <a
+              href="#demo"
+              className="text-sm uppercase tracking-[0.12em] font-semibold text-primary border border-primary/40 hover:border-primary hover:bg-primary/5 transition-all duration-200 px-5 py-2.5 rounded-full"
+            >
               Comenzar
-            </Button>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -53,31 +88,39 @@ export function Navbar() {
             onClick={() => setIsOpen(!isOpen)}
             aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
           >
-            {isOpen ? (
-              <X className="w-6 h-6 text-foreground" />
-            ) : (
-              <Menu className="w-6 h-6 text-foreground" />
-            )}
+            {isOpen ? <X className="w-6 h-6 text-foreground" /> : <Menu className="w-6 h-6 text-foreground" />}
           </button>
         </div>
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden py-4 border-t border-border/50">
-            <div className="flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="text-muted-foreground hover:text-primary transition-colors font-medium py-2"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {link.name}
-                </a>
-              ))}
-              <Button className="rounded-full bg-primary hover:bg-primary/90 text-primary-foreground w-full mt-2">
+          <div className="md:hidden py-4 border-t border-border/30 bg-background/95 backdrop-blur-md">
+            <div className="flex flex-col gap-1">
+              {navLinks.map((link) => {
+                const id = link.href.replace("#", "")
+                const isActive = activeSection === id
+                return (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    className="text-sm uppercase tracking-[0.12em] font-medium py-3 px-2 border-l-2 transition-all duration-200"
+                    style={{
+                      color: isActive ? "var(--primary)" : "var(--muted-foreground)",
+                      borderColor: isActive ? "var(--primary)" : "transparent"
+                    }}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.name}
+                  </a>
+                )
+              })}
+              <a
+                href="#demo"
+                className="mt-3 text-sm uppercase tracking-[0.12em] font-semibold text-primary border border-primary/40 text-center py-3 rounded-full"
+                onClick={() => setIsOpen(false)}
+              >
                 Comenzar
-              </Button>
+              </a>
             </div>
           </div>
         )}
