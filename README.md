@@ -1,6 +1,16 @@
 # 🌸 EntreNosotras – The Digital Big Sister
 
+🌎 **Language / Idioma**
+
+[English](#english) | [Español](#español)
+
 Built during the **She Ships Hackathon** 🚀 | FemTech | AI for Social Impact
+
+---
+
+# English
+
+## 🌸 EntreNosotras – The Digital Big Sister
 
 EntreNosotras is a **FemTech platform** created to empower girls and adolescents with accessible sexual and reproductive health education.
 
@@ -8,7 +18,7 @@ Our goal is to break the cycle of silence and misinformation around menstruation
 
 ---
 
-# 🚀 Live Links
+## 🚀 Live Links
 
 🌐 **Live Demo**
 https://entre-nosotras-dev1-x84h.vercel.app/
@@ -18,7 +28,7 @@ https://devpost.com/software/entre-nosotras
 
 ---
 
-# 🌎 The Problem
+## 🌎 The Problem
 
 In Peru, menstruation is still surrounded by stigma and misinformation.
 
@@ -32,7 +42,7 @@ Silence has a cost — and girls are paying it with their education.
 
 ---
 
-# 💡 Our Solution
+## 💡 Our Solution
 
 **EntreNosotras** is designed as a **“Digital Big Sister”** — a safe and private digital space where girls can ask questions, learn about their bodies, and plan their lives with confidence.
 
@@ -40,7 +50,7 @@ The platform focuses on **education, autonomy, and privacy**.
 
 ---
 
-# ✨ Key Features
+## ✨ Key Features
 
 💬 **AI Assistant (24/7)**
 An anonymous AI assistant that answers questions about sexual and reproductive health in a safe and stigma-free way.
@@ -56,7 +66,7 @@ Designed to ensure that no sensitive questions are linked to a user's real ident
 
 ---
 
-# 🤖 AI Assistant
+## 🤖 AI Assistant
 
 The EntreNosotras assistant is powered by the **OpenAI ChatGPT API**.
 
@@ -80,7 +90,7 @@ The AI acts as a **trusted digital "big sister"**, offering guidance and informa
 
 ---
 
-# 🛠 Tech Stack
+## 🛠 Tech Stack
 
 ### Frontend
 
@@ -104,7 +114,7 @@ The AI acts as a **trusted digital "big sister"**, offering guidance and informa
 
 ---
 
-# 📊 Impact
+## 📊 Impact
 
 Our mission is to reduce menstrual stigma and prevent school absenteeism among girls in Peru.
 
@@ -116,7 +126,7 @@ Market opportunity:
 
 ---
 
-# 🏫 Business Model
+## 🏫 Business Model
 
 EntreNosotras follows a **B2B + Public Access model**.
 
@@ -132,7 +142,7 @@ At the same time, the platform remains **free for individual users**, allowing u
 
 ---
 
-# 💻 Run the Project Locally
+## 💻 Run the Project Locally
 
 Clone the repository:
 
@@ -157,7 +167,7 @@ http://localhost:3000
 
 ---
 
-# 👩‍💻 Team
+## 👩‍💻 Team
 
 5 women. 1 mission.
 
@@ -169,7 +179,7 @@ http://localhost:3000
 
 ---
 
-# 🌱 Future Roadmap
+## 🌱 Future Roadmap
 
 Our next steps include:
 
@@ -179,7 +189,7 @@ Our next steps include:
 
 ---
 
-# 💜 Our Vision
+## 💜 Our Vision
 
 We refuse to let biology become the **glass ceiling of a girl**.
 
@@ -188,3 +198,108 @@ EntreNosotras aims to ensure that a girl's first period is **the beginning of he
 ---
 
 Built with purpose during the **She Ships Hackathon** 🚀
+
+---
+
+# Español
+
+## 🌸 EntreNosotras – La Hermana Mayor Digital
+
+EntreNosotras es una plataforma **FemTech** creada durante el **She Ships Hackathon** para empoderar a niñas y adolescentes con educación accesible sobre salud menstrual y reproductiva.
+
+Nuestro objetivo es romper el ciclo de silencio y desinformación alrededor de la menstruación y brindar a las niñas el conocimiento y la autonomía que merecen.
+
+---
+
+## 🚀 Enlaces del Proyecto
+
+🌐 **Demo en vivo**
+https://entre-nosotras-dev1-x84h.vercel.app/
+
+🏆 **Submission en Devpost**
+https://devpost.com/software/entre-nosotras
+
+---
+
+## 🌎 El Problema
+
+En Perú, la menstruación sigue rodeada de estigma y desinformación.
+
+* **99% de las niñas sienten vergüenza de su periodo en el colegio**
+* **81% de los niños creen que la menstruación es una enfermedad**
+* Miles de niñas faltan a clases cada año por falta de educación menstrual.
+
+Historias como la de *María*, una niña de 12 años que puede perder hasta **20% de su año escolar**, nos inspiraron a construir una solución.
+
+---
+
+## 💡 Nuestra Solución
+
+**EntreNosotras** funciona como una **hermana mayor digital**: un espacio seguro y privado donde las niñas pueden hacer preguntas, aprender sobre su cuerpo y entender mejor su ciclo menstrual.
+
+La plataforma se enfoca en:
+
+* Educación
+* Autonomía
+* Privacidad
+
+---
+
+## ✨ Funcionalidades
+
+💬 **Asistente de IA 24/7**
+Responde preguntas sobre salud menstrual y reproductiva de forma anónima.
+
+📅 **Predicción del ciclo menstrual**
+Permite anticipar fases hormonales y evitar ausencias escolares inesperadas.
+
+📚 **Biblioteca educativa**
+Contenido que traduce información médica compleja a lenguaje simple.
+
+🔒 **Privacidad primero**
+Las preguntas de las usuarias no están vinculadas a su identidad.
+
+---
+
+## 🤖 Inteligencia Artificial
+
+El asistente utiliza la **API de ChatGPT de OpenAI**.
+
+Implementamos un **Large Language Model (LLM)** con un **system prompt especializado** diseñado para actuar como una guía educativa segura para niñas y adolescentes.
+
+La IA fue diseñada para:
+
+* Brindar información precisa sobre salud menstrual
+* Usar lenguaje simple y cercano
+* Mantener un tono empático y sin juicios
+* Proteger la privacidad de las usuarias
+
+---
+
+## 💻 Ejecutar el proyecto localmente
+
+Clonar el repositorio:
+
+git clone https://github.com/your-username/entre-nosotras.git
+
+Instalar dependencias:
+
+npm install
+
+Ejecutar el servidor de desarrollo:
+
+npm run dev
+
+---
+
+## 👩‍💻 Equipo
+
+* **Noemi Huarino** — AI/ML Lead
+* **Kattya Poma** — Lead Engineer
+* **Sandra Aliaga** — CTO
+* **Karla Bedregal** — CEO
+* **Laura Vilca** — CPO
+
+---
+
+Desarrollado durante el **She Ships Hackathon** 🚀
