@@ -1,130 +1,80 @@
 "use client"
 
-import { CheckCircle2, Heart, Shield, Sparkles, Lock, ArrowRight } from "lucide-react"
+import { Sparkles, ArrowRight } from "lucide-react"
 import { ScrollReveal } from "@/components/ui/scroll-reveal"
 import { Button } from "@/components/ui/button"
 
 const benefits = [
-  {
-    text: "Información verificada y confiable",
-    highlight: "verificada"
-  },
-  {
-    text: "Respuestas claras sin lenguaje médico complejo",
-    highlight: "claras"
-  },
-  {
-    text: "Herramientas interactivas para tu ciclo",
-    highlight: "interactivas"
-  },
-  {
-    text: "Disponible cuando lo necesites, 24/7",
-    highlight: "24/7"
-  }
-]
-
-const featureCards = [
-  {
-    icon: Heart,
-    title: "Tu ciclo, tu poder",
-    description: "Entiende tu cuerpo",
-    gradient: "from-pink-500/20 to-rose-500/20",
-    iconBg: "bg-gradient-to-br from-pink-500 to-rose-500"
-  },
-  {
-    icon: Shield,
-    title: "Espacio seguro",
-    description: "Sin tabúes ni juicios",
-    gradient: "from-violet-500/20 to-purple-500/20",
-    iconBg: "bg-gradient-to-br from-violet-500 to-purple-500"
-  },
-  {
-    icon: Sparkles,
-    title: "Aprende cada día",
-    description: "Recursos educativos",
-    gradient: "from-amber-500/20 to-orange-500/20",
-    iconBg: "bg-gradient-to-br from-amber-500 to-orange-500"
-  },
-  {
-    icon: Lock,
-    title: "Privado y seguro",
-    description: "Tu información protegida",
-    gradient: "from-emerald-500/20 to-teal-500/20",
-    iconBg: "bg-gradient-to-br from-emerald-500 to-teal-500"
-  }
+  { number: "01", highlight: "Verificada", rest: " y confiable en todo momento" },
+  { number: "02", highlight: "Sin jerga médica", rest: " — respuestas que se entienden" },
+  { number: "03", highlight: "Herramientas", rest: " interactivas para tu ciclo" },
+  { number: "04", highlight: "Disponible 24/7", rest: " cuando más lo necesitas" },
 ]
 
 export function Solution() {
   return (
     <section id="solucion" className="py-28 relative overflow-hidden">
-      {/* Background with gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/20 to-accent/20" />
-      
-      {/* Decorative background elements */}
       <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-pulse-soft" />
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse-soft" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-primary/5 to-accent/10 rounded-full blur-3xl" />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-20 items-center max-w-7xl mx-auto">
-          {/* Visual element - Feature cards */}
+
+          {/* Visual — Quote / manifesto card */}
           <ScrollReveal direction="left">
             <div className="relative order-2 lg:order-1">
-              {/* Main container with glass effect */}
-              <div className="relative bg-gradient-to-br from-card/80 via-card/60 to-card/40 backdrop-blur-xl rounded-[2.5rem] p-8 md:p-10 border border-border/50 shadow-2xl">
-                {/* Grid of feature cards */}
-                <div className="grid grid-cols-2 gap-4">
-                  {featureCards.map((card, index) => (
-                    <div 
-                      key={index}
-                      className={`group relative bg-gradient-to-br ${card.gradient} rounded-2xl p-5 border border-white/20 hover:border-primary/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl cursor-pointer`}
-                      style={{ animationDelay: `${index * 100}ms` }}
-                    >
-                      {/* Icon */}
-                      <div className={`w-12 h-12 ${card.iconBg} rounded-xl flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                        <card.icon className="w-6 h-6 text-white" />
-                      </div>
-                      
-                      {/* Content */}
-                      <h4 className="font-bold text-foreground mb-1 group-hover:text-primary transition-colors">
-                        {card.title}
-                      </h4>
-                      <p className="text-sm text-muted-foreground">
-                        {card.description}
-                      </p>
+              <div className="relative bg-card rounded-[2rem] p-10 border border-border/60 shadow-2xl overflow-hidden">
+                {/* Accent top bar */}
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-violet-400 to-accent" />
 
-                      {/* Hover glow */}
-                      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/0 to-accent/0 group-hover:from-primary/5 group-hover:to-accent/10 transition-all duration-500" />
-                    </div>
-                  ))}
+                {/* Decorative quote mark */}
+                <div
+                  className="text-[9rem] font-serif leading-none text-primary/10 -mt-6 -mb-6 select-none"
+                  aria-hidden
+                >
+                  &ldquo;
                 </div>
 
-                {/* Floating badge */}
-                <div className="absolute -top-4 -right-4 bg-gradient-to-r from-primary to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg animate-float">
-                  100% Gratuito
-                </div>
+                <blockquote className="text-2xl md:text-3xl font-bold text-foreground leading-tight mb-5">
+                  Tu salud merece respuestas reales, no silencios ni mitos.
+                </blockquote>
 
-                {/* Corner decorations */}
-                <div className="absolute -bottom-3 -left-3 w-20 h-20 bg-gradient-to-br from-accent/40 to-pink-400/40 rounded-full blur-2xl" />
-                <div className="absolute -top-3 -right-3 w-16 h-16 bg-gradient-to-br from-primary/30 to-violet-400/30 rounded-full blur-2xl" />
-              </div>
+                <p className="text-muted-foreground text-base leading-relaxed mb-8">
+                  EntreNosotras nació de una necesidad compartida: un espacio donde las
+                  mujeres puedan aprender sobre su cuerpo sin vergüenza y con información
+                  que realmente importa.
+                </p>
 
-              {/* Additional floating elements */}
-              <div className="absolute -left-6 top-1/2 -translate-y-1/2 bg-card/90 backdrop-blur-sm rounded-2xl p-4 shadow-xl border border-border/50 animate-float-slow hidden md:block">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center">
-                    <CheckCircle2 className="w-5 h-5 text-white" />
+                {/* Platform credit line */}
+                <div className="flex items-center gap-3 pt-6 border-t border-border/50">
+                  <div className="w-9 h-9 bg-gradient-to-br from-primary to-violet-600 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-white text-xs font-bold">EN</span>
                   </div>
                   <div>
-                    <p className="text-xs text-muted-foreground">Usuarios activos</p>
-                    <p className="font-bold text-foreground">+1,000</p>
+                    <p className="text-sm font-semibold text-foreground">EntreNosotras</p>
+                    <p className="text-xs text-muted-foreground">Plataforma de salud menstrual</p>
                   </div>
                 </div>
+
+                {/* Background texture */}
+                <div className="absolute bottom-0 right-0 w-48 h-48 bg-gradient-to-tl from-primary/5 to-transparent rounded-full pointer-events-none" />
+              </div>
+
+              {/* Floating badge */}
+              <div className="absolute -top-4 -right-4 bg-gradient-to-r from-primary to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg animate-float">
+                100% Gratuito
+              </div>
+
+              {/* Stats badge */}
+              <div className="absolute -bottom-4 -left-4 bg-card/90 backdrop-blur-sm rounded-2xl p-4 shadow-xl border border-border/50 animate-float-slow hidden md:block">
+                <p className="text-2xl font-bold text-primary leading-none">+1,000</p>
+                <p className="text-xs text-muted-foreground mt-1">usuarias activas</p>
               </div>
             </div>
           </ScrollReveal>
 
-          {/* Content */}
+          {/* Text content */}
           <ScrollReveal direction="right">
             <div className="order-1 lg:order-2">
               {/* Badge */}
@@ -145,31 +95,29 @@ export function Solution() {
 
               {/* Description */}
               <p className="text-lg text-muted-foreground mb-10 text-pretty leading-relaxed max-w-lg">
-                EntreNosotras proporciona un espacio privado, comprensivo y accesible 
-                donde las mujeres pueden aprender sobre su salud menstrual y reproductiva 
+                EntreNosotras proporciona un espacio privado, comprensivo y accesible
+                donde las mujeres pueden aprender sobre su salud menstrual y reproductiva
                 de forma segura y sin juicios.
               </p>
 
-              {/* Benefits list */}
-              <ul className="space-y-5 mb-10">
+              {/* Benefits — numbered editorial list */}
+              <ul className="space-y-0 divide-y divide-border/50 mb-10">
                 {benefits.map((benefit, index) => (
-                  <li 
-                    key={index} 
-                    className="flex items-center gap-4 group"
-                  >
-                    <div className="w-8 h-8 bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:from-primary/30 group-hover:to-accent/30 transition-all duration-300 group-hover:scale-110">
-                      <CheckCircle2 className="w-5 h-5 text-primary" />
-                    </div>
-                    <span className="text-foreground text-lg">
-                      {benefit.text}
+                  <li key={index} className="group flex items-baseline gap-4 py-4">
+                    <span className="text-xs font-mono text-muted-foreground/50 flex-shrink-0 w-6 group-hover:text-primary transition-colors duration-200">
+                      {benefit.number}
+                    </span>
+                    <span className="text-base text-foreground">
+                      <span className="text-primary font-semibold">{benefit.highlight}</span>
+                      {benefit.rest}
                     </span>
                   </li>
                 ))}
               </ul>
 
-              {/* CTA Button */}
-              <Button 
-                size="lg" 
+              {/* CTA */}
+              <Button
+                size="lg"
                 className="bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-white rounded-full px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-xl hover:shadow-primary/25 transition-all duration-300 group"
               >
                 Comenzar ahora

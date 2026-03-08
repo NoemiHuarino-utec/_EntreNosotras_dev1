@@ -1,5 +1,7 @@
 import { Heart, Instagram, Mail } from "lucide-react"
 
+const currentYear = new Date().getFullYear()
+
 const socialLinks = [
   { icon: Instagram, href: "#", label: "Instagram" },
   { icon: Mail, href: "#", label: "Email" }
@@ -85,7 +87,7 @@ export function Footer() {
         {/* Bottom */}
         <div className="border-t border-card/10 pt-8 flex flex-col items-center gap-4">
           <p className="text-card/60 text-sm">
-            © 2024 EntreNosotras. Todos los derechos reservados.
+            © {currentYear} EntreNosotras. Todos los derechos reservados.
           </p>
           <p className="text-card text-lg flex items-center gap-2 font-medium">
             Hecho con <Heart className="w-5 h-5 text-primary fill-primary animate-pulse" aria-label="amor" /> para mujeres.
