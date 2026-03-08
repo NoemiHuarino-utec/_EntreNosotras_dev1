@@ -1,78 +1,125 @@
 "use client"
 
-import { CheckCircle2, Heart, Shield, Sparkles, Lock } from "lucide-react"
+import { CheckCircle2, Heart, Shield, Sparkles, Lock, ArrowRight } from "lucide-react"
 import { ScrollReveal } from "@/components/ui/scroll-reveal"
+import { Button } from "@/components/ui/button"
 
 const benefits = [
-  "Información verificada y confiable",
-  "Respuestas claras sin lenguaje médico complejo",
-  "Herramientas interactivas para tu ciclo",
-  "Disponible cuando lo necesites"
+  {
+    text: "Información verificada y confiable",
+    highlight: "verificada"
+  },
+  {
+    text: "Respuestas claras sin lenguaje médico complejo",
+    highlight: "claras"
+  },
+  {
+    text: "Herramientas interactivas para tu ciclo",
+    highlight: "interactivas"
+  },
+  {
+    text: "Disponible cuando lo necesites, 24/7",
+    highlight: "24/7"
+  }
+]
+
+const featureCards = [
+  {
+    icon: Heart,
+    title: "Tu ciclo, tu poder",
+    description: "Entiende tu cuerpo",
+    gradient: "from-pink-500/20 to-rose-500/20",
+    iconBg: "bg-gradient-to-br from-pink-500 to-rose-500"
+  },
+  {
+    icon: Shield,
+    title: "Espacio seguro",
+    description: "Sin tabúes ni juicios",
+    gradient: "from-violet-500/20 to-purple-500/20",
+    iconBg: "bg-gradient-to-br from-violet-500 to-purple-500"
+  },
+  {
+    icon: Sparkles,
+    title: "Aprende cada día",
+    description: "Recursos educativos",
+    gradient: "from-amber-500/20 to-orange-500/20",
+    iconBg: "bg-gradient-to-br from-amber-500 to-orange-500"
+  },
+  {
+    icon: Lock,
+    title: "Privado y seguro",
+    description: "Tu información protegida",
+    gradient: "from-emerald-500/20 to-teal-500/20",
+    iconBg: "bg-gradient-to-br from-emerald-500 to-teal-500"
+  }
 ]
 
 export function Solution() {
   return (
-    <section id="solucion" className="py-24 bg-gradient-to-b from-muted/50 to-secondary/30">
-      <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
-          {/* Visual element */}
+    <section id="solucion" className="py-28 relative overflow-hidden">
+      {/* Background with gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/20 to-accent/20" />
+      
+      {/* Decorative background elements */}
+      <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-pulse-soft" />
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse-soft" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-primary/5 to-accent/10 rounded-full blur-3xl" />
+
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-20 items-center max-w-7xl mx-auto">
+          {/* Visual element - Feature cards */}
           <ScrollReveal direction="left">
             <div className="relative order-2 lg:order-1">
-              <div className="relative bg-gradient-to-br from-primary/5 via-accent/10 to-secondary/20 rounded-3xl p-8 md:p-12">
-                {/* Decorative cards */}
-                <div className="space-y-4">
-                  <div className="bg-card rounded-2xl p-6 shadow-lg border border-border/50 transform -rotate-2 hover:rotate-0 transition-transform duration-300">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
-                        <Heart className="w-6 h-6 text-primary" />
+              {/* Main container with glass effect */}
+              <div className="relative bg-gradient-to-br from-card/80 via-card/60 to-card/40 backdrop-blur-xl rounded-[2.5rem] p-8 md:p-10 border border-border/50 shadow-2xl">
+                {/* Grid of feature cards */}
+                <div className="grid grid-cols-2 gap-4">
+                  {featureCards.map((card, index) => (
+                    <div 
+                      key={index}
+                      className={`group relative bg-gradient-to-br ${card.gradient} rounded-2xl p-5 border border-white/20 hover:border-primary/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl cursor-pointer`}
+                      style={{ animationDelay: `${index * 100}ms` }}
+                    >
+                      {/* Icon */}
+                      <div className={`w-12 h-12 ${card.iconBg} rounded-xl flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                        <card.icon className="w-6 h-6 text-white" />
                       </div>
-                      <div>
-                        <p className="font-semibold text-foreground">Tu ciclo, tu poder</p>
-                        <p className="text-sm text-muted-foreground">Entiende tu cuerpo</p>
-                      </div>
-                    </div>
-                  </div>
+                      
+                      {/* Content */}
+                      <h4 className="font-bold text-foreground mb-1 group-hover:text-primary transition-colors">
+                        {card.title}
+                      </h4>
+                      <p className="text-sm text-muted-foreground">
+                        {card.description}
+                      </p>
 
-                  <div className="bg-card rounded-2xl p-6 shadow-lg border border-border/50 transform rotate-1 hover:rotate-0 transition-transform duration-300 ml-8">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-accent/50 rounded-xl flex items-center justify-center">
-                        <Shield className="w-6 h-6 text-primary" />
-                      </div>
-                      <div>
-                        <p className="font-semibold text-foreground">Espacio seguro</p>
-                        <p className="text-sm text-muted-foreground">Sin tabúes ni juicios</p>
-                      </div>
+                      {/* Hover glow */}
+                      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/0 to-accent/0 group-hover:from-primary/5 group-hover:to-accent/10 transition-all duration-500" />
                     </div>
-                  </div>
-
-                  <div className="bg-card rounded-2xl p-6 shadow-lg border border-border/50 transform -rotate-1 hover:rotate-0 transition-transform duration-300">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-secondary rounded-xl flex items-center justify-center">
-                        <Sparkles className="w-6 h-6 text-primary" />
-                      </div>
-                      <div>
-                        <p className="font-semibold text-foreground">Aprende cada día</p>
-                        <p className="text-sm text-muted-foreground">Recursos educativos</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="bg-card rounded-2xl p-6 shadow-lg border border-border/50 transform rotate-2 hover:rotate-0 transition-transform duration-300 ml-4">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
-                        <Lock className="w-6 h-6 text-primary" />
-                      </div>
-                      <div>
-                        <p className="font-semibold text-foreground">Privado y seguro</p>
-                        <p className="text-sm text-muted-foreground">Tu información protegida</p>
-                      </div>
-                    </div>
-                  </div>
+                  ))}
                 </div>
 
-                {/* Decorative blurs */}
-                <div className="absolute -top-4 -right-4 w-24 h-24 bg-accent/30 rounded-full blur-2xl" />
-                <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-primary/10 rounded-full blur-2xl" />
+                {/* Floating badge */}
+                <div className="absolute -top-4 -right-4 bg-gradient-to-r from-primary to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg animate-float">
+                  100% Gratuito
+                </div>
+
+                {/* Corner decorations */}
+                <div className="absolute -bottom-3 -left-3 w-20 h-20 bg-gradient-to-br from-accent/40 to-pink-400/40 rounded-full blur-2xl" />
+                <div className="absolute -top-3 -right-3 w-16 h-16 bg-gradient-to-br from-primary/30 to-violet-400/30 rounded-full blur-2xl" />
+              </div>
+
+              {/* Additional floating elements */}
+              <div className="absolute -left-6 top-1/2 -translate-y-1/2 bg-card/90 backdrop-blur-sm rounded-2xl p-4 shadow-xl border border-border/50 animate-float-slow hidden md:block">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center">
+                    <CheckCircle2 className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground">Usuarios activos</p>
+                    <p className="font-bold text-foreground">+1,000</p>
+                  </div>
+                </div>
               </div>
             </div>
           </ScrollReveal>
@@ -80,31 +127,54 @@ export function Solution() {
           {/* Content */}
           <ScrollReveal direction="right">
             <div className="order-1 lg:order-2">
-              <span className="inline-block text-primary font-semibold text-sm uppercase tracking-wider bg-primary/10 px-4 py-1 rounded-full mb-4">
-                La Solución
-              </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-3 mb-6 text-balance">
-                Tu espacio privado de aprendizaje
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20 px-5 py-2 rounded-full mb-6">
+                <Sparkles className="w-4 h-4 text-primary" />
+                <span className="text-primary font-semibold text-sm uppercase tracking-wider">
+                  La Solución
+                </span>
+              </div>
+
+              {/* Heading */}
+              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 text-balance leading-tight">
+                Tu espacio privado de{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-600">
+                  aprendizaje
+                </span>
               </h2>
-              <p className="text-lg text-muted-foreground mb-8 text-pretty leading-relaxed">
+
+              {/* Description */}
+              <p className="text-lg text-muted-foreground mb-10 text-pretty leading-relaxed max-w-lg">
                 EntreNosotras proporciona un espacio privado, comprensivo y accesible 
                 donde las mujeres pueden aprender sobre su salud menstrual y reproductiva 
                 de forma segura y sin juicios.
               </p>
 
-              <ul className="space-y-4">
+              {/* Benefits list */}
+              <ul className="space-y-5 mb-10">
                 {benefits.map((benefit, index) => (
                   <li 
                     key={index} 
-                    className="flex items-center gap-3 group"
+                    className="flex items-center gap-4 group"
                   >
-                    <div className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
-                      <CheckCircle2 className="w-4 h-4 text-primary" />
+                    <div className="w-8 h-8 bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:from-primary/30 group-hover:to-accent/30 transition-all duration-300 group-hover:scale-110">
+                      <CheckCircle2 className="w-5 h-5 text-primary" />
                     </div>
-                    <span className="text-foreground">{benefit}</span>
+                    <span className="text-foreground text-lg">
+                      {benefit.text}
+                    </span>
                   </li>
                 ))}
               </ul>
+
+              {/* CTA Button */}
+              <Button 
+                size="lg" 
+                className="bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-white rounded-full px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-xl hover:shadow-primary/25 transition-all duration-300 group"
+              >
+                Comenzar ahora
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
             </div>
           </ScrollReveal>
         </div>
