@@ -1,37 +1,51 @@
 "use client"
 
-import { MapPin, Wifi, Users, Sparkles } from "lucide-react"
 import { ScrollReveal } from "@/components/ui/scroll-reveal"
 
 const roadmapItems = [
   {
-    icon: MapPin,
+    number: "01",
     title: "Mapa de Recursos",
     description: "Encuentra servicios de salud femenina cercanos a ti.",
     status: "Próximamente",
-    color: "bg-primary"
+    statusColor: "text-primary bg-primary/10",
+    dotColor: "#a78bfa",
+    indent: "ml-0",
   },
   {
-    icon: Wifi,
+    number: "02",
     title: "Acceso Sin Conexión",
     description: "Accede a contenido educativo en áreas con internet limitado.",
     status: "En desarrollo",
-    color: "bg-accent"
+    statusColor: "text-fuchsia-600 bg-fuchsia-100",
+    dotColor: "#e879f9",
+    indent: "ml-12 md:ml-24",
   },
   {
-    icon: Users,
+    number: "03",
     title: "Espacios Comunitarios",
     description: "Conecta con otras mujeres en un espacio seguro de apoyo.",
     status: "Planeado",
-    color: "bg-secondary"
-  }
+    statusColor: "text-rose-500 bg-rose-100",
+    dotColor: "#fb7185",
+    indent: "ml-24 md:ml-48",
+  },
 ]
 
 export function Roadmap() {
   return (
-    <section id="roadmap" className="min-h-screen flex flex-col bg-gradient-to-b from-muted/30 to-secondary/30 relative overflow-hidden">
+    <section id="roadmap" className="min-h-screen flex flex-col relative overflow-hidden" style={{ background: "linear-gradient(135deg, #fdf2f8 0%, #faf5ff 50%, #fce7f3 100%)" }}>
 
-      <div className="flex-1 flex flex-col justify-center py-16">
+      {/* Blobs */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-primary/8 rounded-full blur-[100px]" />
+        <div className="absolute bottom-1/4 left-1/3 w-[300px] h-[300px] bg-rose-300/20 rounded-full blur-[80px]" />
+        <div className="absolute top-10 left-1/4 w-[200px] h-[200px] bg-fuchsia-300/10 rounded-full blur-[70px]" />
+        <div className="absolute bottom-10 right-1/3 w-[180px] h-[180px] bg-violet-300/10 rounded-full blur-[60px]" />
+        <div className="absolute top-1/2 left-10 w-[150px] h-[150px] bg-pink-300/10 rounded-full blur-[80px]" />
+      </div>
+
+      <div className="flex-1 flex flex-col justify-center py-16 relative z-10">
       <div className="container mx-auto px-4">
 
         {/* Section title */}
@@ -41,57 +55,46 @@ export function Roadmap() {
           <span className="text-xs font-mono text-foreground/35 tracking-[0.2em] flex-shrink-0">—</span>
         </div>
 
-        {/* Timeline */}
-        <div className="max-w-3xl mx-auto">
-          <div className="relative">
-            {/* Timeline line */}
-            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-secondary transform md:-translate-x-1/2" />
+        {/* Items con camino */}
+        <div className="relative">
 
+          {/* Línea del camino */}
+          <div className="absolute left-[11px] top-6 bottom-6 w-[2px] bg-gradient-to-b from-violet-300 via-fuchsia-300 to-rose-300 md:hidden" />
+
+          <div className="divide-y divide-foreground/[0.06]">
             {roadmapItems.map((item, index) => (
-              <ScrollReveal 
-                key={index} 
-                delay={index * 200} 
-                direction={index % 2 === 0 ? "left" : "right"}
-              >
-                <div 
-                  className={`relative flex items-center mb-12 last:mb-0 ${
-                    index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                  }`}
-                >
-                  {/* Timeline dot */}
-                  <div className="absolute left-8 md:left-1/2 w-4 h-4 bg-card border-4 border-primary rounded-full transform -translate-x-1/2 z-10" />
-                  
-                  {/* Content card */}
-                  <div className={`ml-16 md:ml-0 md:w-[calc(50%-2rem)] ${
-                    index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'
-                  }`}>
-                    <div className="bg-card rounded-2xl p-6 shadow-lg border border-border/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
-                      <div className="flex items-start gap-4">
-                        <div className={`w-12 h-12 ${item.color}/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
-                          <item.icon className="w-6 h-6 text-primary" />
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-2">
-                            <h3 className="font-semibold text-foreground">{item.title}</h3>
-                          </div>
-                          <p className="text-sm text-muted-foreground mb-3">{item.description}</p>
-                          <span className={`inline-flex items-center gap-1 text-xs font-medium px-3 py-1 rounded-full ${
-                            item.status === "Próximamente" ? "bg-primary/10 text-primary" :
-                            item.status === "En desarrollo" ? "bg-accent/50 text-foreground" :
-                            "bg-secondary text-foreground"
-                          }`}>
-                            <Sparkles className="w-3 h-3" />
-                            {item.status}
-                          </span>
-                        </div>
-                      </div>
+              <ScrollReveal key={index} direction="up" delay={index * 120}>
+                <div className={`group flex gap-8 py-12 md:py-16 cursor-default ${item.indent}`}>
+
+                  {/* Dot del camino */}
+                  <div className="flex flex-col items-center flex-shrink-0 pt-1 md:pt-4">
+                    <div className="w-6 h-6 rounded-full border-[3px] border-white shadow-md flex-shrink-0 relative z-10" style={{ backgroundColor: item.dotColor }} />
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex-1 flex flex-col md:flex-row md:items-center gap-6">
+                    <div className="flex-1">
+                      <span className="text-xs font-mono text-foreground/30 block mb-4">{item.number}</span>
+                      <h3 className="text-4xl md:text-6xl font-bold text-foreground leading-none mb-5 group-hover:text-primary transition-colors duration-300">
+                        {item.title}
+                      </h3>
+                      <p className="text-base text-muted-foreground max-w-md leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+                    <div className="flex-shrink-0">
+                      <span className={`inline-flex text-sm font-semibold uppercase tracking-[0.15em] px-6 py-3 rounded-full ${item.statusColor}`}>
+                        {item.status}
+                      </span>
                     </div>
                   </div>
+
                 </div>
               </ScrollReveal>
             ))}
           </div>
         </div>
+
       </div>
       </div>
     </section>
