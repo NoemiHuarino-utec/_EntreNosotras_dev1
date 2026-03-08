@@ -19,7 +19,7 @@ export function Demo() {
               Explora el Demo
             </h2>
             
-            <p className="text-lg text-muted-foreground max-w-xl mb-10 text-pretty leading-relaxed">
+            <p className="text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-10 text-pretty leading-relaxed">
               Descubre cómo EntreNosotras puede ayudarte a entender mejor tu salud menstrual. 
               Explora una vista previa de nuestra plataforma de forma gratuita.
             </p>
