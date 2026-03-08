@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useRef, useEffect, useCallback } from "react"
-import { Send, Sparkles, Heart } from "lucide-react"
+import { Send, Sparkles, Heart, Volume2 } from "lucide-react"
 
 interface Message {
   id: number
@@ -77,6 +77,7 @@ export function DemoChat() {
   const [inputText, setInputText] = useState("")
   const [isTyping, setIsTyping] = useState(false)
   const [isAnimating, setIsAnimating] = useState(false)
+  const [isSpeaking, setIsSpeaking] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const typingIntervalRef = useRef<NodeJS.Timeout | null>(null)
 
@@ -96,40 +97,45 @@ export function DemoChat() {
     }
   }, [])
 
-  const getRandomItem = <T,>(arr: T[]): T => {
-    return arr[Math.floor(Math.random() * arr.length)]
+  const removeEmojis = (text: string): string => {
+    return text.replace(/[\u{1F000}-\u{1FFFF}]/gu, '').trim()
   }
 
-  const detectTopic = (text: string): string => {
-    const lowerText = text.toLowerCase()
-    
-    if (lowerText.includes("hola") || lowerText.includes("buenos") || lowerText.includes("hi") || lowerText.includes("hey")) {
-      return "saludo"
+  const speakText = (text: string) => {
+    const cleanText = removeEmojis(text)
+    if ('speechSynthesis' in window) {
+      const utterance = new SpeechSynthesisUtterance(cleanText)
+      utterance.lang = 'es-ES' // Spanish
+      utterance.rate = 0.9
+      utterance.pitch = 1
+      utterance.onend = () => setIsSpeaking(false)
+      setIsSpeaking(true)
+      speechSynthesis.speak(utterance)
+    } else {
+      alert('Tu navegador no soporta síntesis de voz.')
     }
-    if (lowerText.includes("ciclo") || lowerText.includes("menstrual") || lowerText.includes("periodo") || lowerText.includes("regla") || lowerText.includes("menstruación") || lowerText.includes("menstruacion")) {
-      return "ciclo"
-    }
-    if (lowerText.includes("flujo") || lowerText.includes("descarga") || lowerText.includes("vaginal") || lowerText.includes("secreción") || lowerText.includes("secrecion")) {
-      return "flujo"
-    }
-    if (lowerText.includes("dolor") || lowerText.includes("cólico") || lowerText.includes("colico") || lowerText.includes("cramp") || lowerText.includes("duele") || lowerText.includes("molestia")) {
-      return "dolor"
-    }
-    if (lowerText.includes("anticonceptivo") || lowerText.includes("píldora") || lowerText.includes("pildora") || lowerText.includes("condón") || lowerText.includes("condon") || lowerText.includes("diu") || lowerText.includes("implante") || lowerText.includes("prevenir embarazo")) {
-      return "anticonceptivos"
-    }
-    if (lowerText.includes("higiene") || lowerText.includes("limpiar") || lowerText.includes("lavar") || lowerText.includes("jabón") || lowerText.includes("jabon") || lowerText.includes("ducha")) {
-      return "higiene"
-    }
-    return "default"
   }
 
-  const buildResponse = (topic: string): string => {
-    const baseResponse = getRandomItem(responseVariations[topic])
-    const prefix = Math.random() > 0.5 ? getRandomItem(conversationalPrefixes) : ""
-    const suffix = Math.random() > 0.6 ? getRandomItem(conversationalSuffixes) : ""
-    
-    return prefix + baseResponse + suffix
+  const buildResponse = async (userInput: string): Promise<string> => {
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: userInput }),
+      })
+
+      if (!res.ok) {
+        throw new Error('API error')
+      }
+
+      const data = await res.json()
+      return data.response
+    } catch (error) {
+      console.error('Error fetching response:', error)
+      return 'Lo siento, hubo un error al procesar tu mensaje. Por favor, intenta de nuevo.'
+    }
   }
 
   const animateTyping = (messageId: number, fullText: string) => {
@@ -148,6 +154,13 @@ export function DemoChat() {
           clearInterval(typingIntervalRef.current)
         }
         setIsAnimating(false)
+        setMessages(prev => 
+          prev.map(msg => 
+            msg.id === messageId 
+              ? { ...msg, isTyping: false }
+              : msg
+          )
+        )
       }
 
       setMessages(prev => 
@@ -160,7 +173,7 @@ export function DemoChat() {
     }, tickInterval)
   }
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (!inputText.trim() || isTyping || isAnimating) return
 
     const userMessage: Message = {
@@ -177,9 +190,8 @@ export function DemoChat() {
 
     const typingDelay = 800 + Math.random() * 1200
 
-    setTimeout(() => {
-      const topic = detectTopic(userInput)
-      const response = buildResponse(topic)
+    setTimeout(async () => {
+      const response = await buildResponse(userInput)
       
       const botMessageId = Date.now() + 1
       const botMessage: Message = {
@@ -257,12 +269,29 @@ export function DemoChat() {
                   : "bg-white text-[#374151] rounded-bl-sm shadow-md border border-[#E9D5FF]/50"
               }`}
             >
-              <p className="text-sm leading-relaxed">
+              <p className="text-sm leading-relaxed mb-2">
                 {message.displayedText || message.text}
                 {!message.isUser && message.displayedText !== message.text && (
                   <span className="inline-block w-0.5 h-4 bg-[#7C3AED] ml-0.5 animate-pulse" />
                 )}
               </p>
+              {!message.isUser && message.displayedText === message.text && !message.isTyping && (
+                <button
+                  onClick={() => {
+                    if (isSpeaking) {
+                      speechSynthesis.cancel()
+                      setIsSpeaking(false)
+                    } else {
+                      speakText(message.text)
+                    }
+                  }}
+                  className="text-xs text-[#7C3AED] hover:text-[#A78BFA] transition-colors flex items-center gap-1 opacity-70 hover:opacity-100"
+                  title={isSpeaking ? "Detener voz" : "Leer en voz alta"}
+                >
+                  <Volume2 className="w-3 h-3" />
+                  {isSpeaking ? "Detener" : "Escuchar"}
+                </button>
+              )}
             </div>
           </div>
         ))}

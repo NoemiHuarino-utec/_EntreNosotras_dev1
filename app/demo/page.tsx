@@ -5,12 +5,60 @@ import { DemoHome } from "@/components/demo/demo-home"
 import { DemoChat } from "@/components/demo/demo-chat"
 import { DemoLibrary } from "@/components/demo/demo-library"
 import { DemoCycleTracker } from "@/components/demo/demo-cycle-tracker"
-import { Home, MessageCircle, BookOpen, Calendar } from "lucide-react"
+import { Home, MessageCircle, BookOpen, Calendar, Sparkles } from "lucide-react"
 
 type Screen = "home" | "chat" | "library" | "tracker"
 
+function NameInputScreen({ onSubmit }: { onSubmit: (name: string) => void }) {
+  const [name, setName] = useState("")
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    onSubmit(name)
+  }
+
+  return (
+    <div className="h-full flex flex-col items-center justify-center p-6 bg-gradient-to-b from-[#F5F3FF] to-white">
+      <div className="text-center mb-8">
+        <div className="w-16 h-16 bg-gradient-to-br from-[#7C3AED] to-[#A78BFA] rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+          <Sparkles className="w-8 h-8 text-white" />
+        </div>
+        <h1 className="text-2xl font-bold text-[#374151] mb-2">Bienvenida a EntreNosotras</h1>
+        <p className="text-[#6B7280] text-sm">Para personalizar tu experiencia, ¿cómo te llamas?</p>
+      </div>
+
+      <form onSubmit={handleSubmit} className="w-full max-w-xs">
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Tu nombre"
+          className="w-full px-4 py-3 rounded-xl border border-[#E9D5FF] bg-white/70 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-[#7C3AED] focus:border-transparent text-center text-lg font-medium"
+          autoFocus
+        />
+        <button
+          type="submit"
+          disabled={!name.trim()}
+          className="w-full mt-4 px-6 py-3 bg-gradient-to-r from-[#7C3AED] to-[#A78BFA] text-white rounded-xl font-medium disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg transition-all duration-300"
+        >
+          Continuar
+        </button>
+      </form>
+    </div>
+  )
+}
+
 export default function DemoPage() {
   const [currentScreen, setCurrentScreen] = useState<Screen>("home")
+  const [userName, setUserName] = useState("")
+  const [showNameInput, setShowNameInput] = useState(true)
+
+  const handleNameSubmit = (name: string) => {
+    if (name.trim()) {
+      setUserName(name.trim())
+      setShowNameInput(false)
+    }
+  }
 
   const navItems = [
     { id: "home" as Screen, icon: Home, label: "Inicio" },
@@ -62,31 +110,39 @@ export default function DemoPage() {
 
             {/* Screen content */}
             <div className="flex-1 overflow-hidden bg-gradient-to-b from-[#F5F3FF] to-white">
-              {currentScreen === "home" && <DemoHome onNavigate={setCurrentScreen} />}
-              {currentScreen === "chat" && <DemoChat />}
-              {currentScreen === "library" && <DemoLibrary />}
-              {currentScreen === "tracker" && <DemoCycleTracker />}
+              {showNameInput ? (
+                <NameInputScreen onSubmit={handleNameSubmit} />
+              ) : (
+                <>
+                  {currentScreen === "home" && <DemoHome onNavigate={setCurrentScreen} userName={userName} />}
+                  {currentScreen === "chat" && <DemoChat />}
+                  {currentScreen === "library" && <DemoLibrary />}
+                  {currentScreen === "tracker" && <DemoCycleTracker />}
+                </>
+              )}
             </div>
 
             {/* Bottom navigation */}
-            <div className="bg-white border-t border-[#E9D5FF] px-4 py-2 pb-6">
-              <div className="flex justify-around">
-                {navItems.map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => setCurrentScreen(item.id)}
-                    className={`flex flex-col items-center gap-1 p-2 rounded-xl transition-all duration-300 ${
-                      currentScreen === item.id
-                        ? "text-[#7C3AED] bg-[#7C3AED]/10"
-                        : "text-[#6B7280] hover:text-[#7C3AED]"
-                    }`}
-                  >
-                    <item.icon className={`w-5 h-5 transition-transform duration-300 ${currentScreen === item.id ? "scale-110" : ""}`} />
-                    <span className="text-[10px] font-medium">{item.label}</span>
-                  </button>
-                ))}
+            {!showNameInput && (
+              <div className="bg-white border-t border-[#E9D5FF] px-4 py-2 pb-6">
+                <div className="flex justify-around">
+                  {navItems.map((item) => (
+                    <button
+                      key={item.id}
+                      onClick={() => setCurrentScreen(item.id)}
+                      className={`flex flex-col items-center gap-1 p-2 rounded-xl transition-all duration-300 ${
+                        currentScreen === item.id
+                          ? "text-[#7C3AED] bg-[#7C3AED]/10"
+                          : "text-[#6B7280] hover:text-[#7C3AED]"
+                      }`}
+                    >
+                      <item.icon className={`w-5 h-5 transition-transform duration-300 ${currentScreen === item.id ? "scale-110" : ""}`} />
+                      <span className="text-[10px] font-medium">{item.label}</span>
+                    </button>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

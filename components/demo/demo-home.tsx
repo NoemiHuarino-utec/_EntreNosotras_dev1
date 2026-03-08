@@ -6,9 +6,10 @@ type Screen = "home" | "chat" | "library" | "tracker"
 
 interface DemoHomeProps {
   onNavigate: (screen: Screen) => void
+  userName: string
 }
 
-export function DemoHome({ onNavigate }: DemoHomeProps) {
+export function DemoHome({ onNavigate, userName }: DemoHomeProps) {
   const quickTopics = [
     { icon: Activity, label: "Ciclo", color: "from-[#7C3AED] to-[#A78BFA]", bgColor: "from-[#7C3AED]/10 to-[#A78BFA]/5" },
     { icon: Droplets, label: "Flujo", color: "from-[#EC4899] to-[#F9A8D4]", bgColor: "from-[#EC4899]/10 to-[#F9A8D4]/5" },
@@ -27,10 +28,10 @@ export function DemoHome({ onNavigate }: DemoHomeProps) {
       <div className="flex items-center justify-between mb-4">
         <div>
           <p className="text-xs text-[#6B7280]">Bienvenida</p>
-          <h1 className="text-lg font-bold text-[#374151]">Hola, Ana</h1>
+          <h1 className="text-lg font-bold text-[#374151]">Hola, {userName}</h1>
         </div>
         <div className="w-10 h-10 bg-gradient-to-br from-[#7C3AED] to-[#A78BFA] rounded-full flex items-center justify-center shadow-md">
-          <span className="text-sm font-bold text-white">A</span>
+          <span className="text-sm font-bold text-white">{userName.charAt(0).toUpperCase()}</span>
         </div>
       </div>
 
