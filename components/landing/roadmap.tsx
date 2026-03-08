@@ -29,21 +29,17 @@ const roadmapItems = [
 
 export function Roadmap() {
   return (
-    <section id="roadmap" className="py-24 bg-gradient-to-b from-muted/30 to-secondary/30">
+    <section id="roadmap" className="min-h-screen flex flex-col bg-gradient-to-b from-muted/30 to-secondary/30 relative overflow-hidden">
+
+      <div className="flex-1 flex flex-col justify-center py-16">
       <div className="container mx-auto px-4">
-        <ScrollReveal>
-          <div className="text-center mb-16">
-            <span className="inline-block text-primary font-semibold text-sm uppercase tracking-wider bg-primary/10 px-4 py-1 rounded-full mb-4">
-              Roadmap
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-3 mb-6 text-balance">
-              Lo que viene
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty leading-relaxed">
-              Estamos trabajando en nuevas funcionalidades para brindarte una experiencia aún mejor.
-            </p>
-          </div>
-        </ScrollReveal>
+
+        {/* Section title */}
+        <div className="flex items-center gap-4 mb-16">
+          <span className="text-3xl md:text-4xl font-black uppercase text-primary leading-none tracking-tight whitespace-nowrap">Roadmap</span>
+          <div className="flex-1 h-px bg-foreground/15" />
+          <span className="text-xs font-mono text-foreground/35 tracking-[0.2em] flex-shrink-0">—</span>
+        </div>
 
         {/* Timeline */}
         <div className="max-w-3xl mx-auto">
@@ -96,6 +92,7 @@ export function Roadmap() {
             ))}
           </div>
         </div>
+      </div>
       </div>
     </section>
   )

@@ -1,80 +1,87 @@
 "use client"
 
-import { Smartphone, BookOpen, MessageCircleQuestion, FileText } from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
 import { ScrollReveal } from "@/components/ui/scroll-reveal"
 
 const insights = [
   {
-    icon: Smartphone,
     stat: "85%",
     title: "Prefieren app + web",
     description: "La mayoría prefiere una solución disponible tanto como aplicación móvil como sitio web.",
-    color: "bg-primary/10"
+    accent: "bg-primary",
   },
   {
-    icon: BookOpen,
     stat: "#1",
     title: "Temas más solicitados",
     description: "Higiene menstrual, flujo vaginal y cómo funciona el ciclo menstrual.",
-    color: "bg-accent/50"
+    accent: "bg-pink-400",
   },
   {
-    icon: MessageCircleQuestion,
     stat: "72%",
     title: "Barrera principal",
     description: "La falta de espacios seguros para hacer preguntas es el mayor obstáculo para informarse.",
-    color: "bg-secondary"
+    accent: "bg-rose-400",
   },
   {
-    icon: FileText,
     stat: "90%",
     title: "Formato preferido",
     description: "Prefieren consejos claros y breves en lugar de lenguaje médico complejo.",
-    color: "bg-primary/10"
-  }
+    accent: "bg-violet-400",
+  },
 ]
 
 export function Insights() {
   return (
-    <section id="insights" className="py-24 bg-gradient-to-b from-background to-muted/50">
-      <div className="container mx-auto px-4">
-        <ScrollReveal>
-          <div className="text-center mb-16">
-            <span className="inline-block text-primary font-semibold text-sm uppercase tracking-wider bg-primary/10 px-4 py-1 rounded-full mb-4">
-              Lo Que Aprendimos
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-3 mb-6 text-balance">
-              Insights de nuestras usuarias
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty leading-relaxed">
-              Realizamos una encuesta para entender mejor las necesidades reales de las mujeres 
-              en temas de salud menstrual y reproductiva.
-            </p>
-          </div>
-        </ScrollReveal>
+    <section id="insights" className="min-h-screen flex flex-col bg-gradient-to-b from-background to-muted/50 relative overflow-hidden">
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+      {/* Content — centrado verticalmente */}
+      <div className="flex-1 flex flex-col justify-center py-16">
+        <div className="container mx-auto px-4">
+
+          {/* Section title */}
+          <div className="flex items-center gap-4 mb-16">
+            <span className="text-3xl md:text-4xl font-black uppercase text-primary leading-none tracking-tight whitespace-nowrap">Lo Que Aprendimos</span>
+            <div className="flex-1 h-px bg-foreground/15" />
+            <span className="text-xs font-mono text-foreground/35 tracking-[0.2em] flex-shrink-0">06</span>
+          </div>
+
+        {/* Top rule */}
+        <div className="w-full h-px bg-foreground/10" />
+
+        {/* Stat grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
           {insights.map((insight, index) => (
-            <ScrollReveal key={index} delay={index * 100} direction="up">
-              <Card 
-                className="bg-card border-border/50 hover:shadow-xl hover:-translate-y-2 transition-all duration-500 group overflow-hidden h-full"
-              >
-                <CardContent className="pt-8 pb-8 text-center relative">
-                  {/* Background accent */}
-                  <div className={`absolute top-0 left-0 right-0 h-1 ${insight.color.replace('/10', '').replace('/50', '')}`} />
-                  
-                  <div className={`w-14 h-14 ${insight.color} rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                    <insight.icon className="w-7 h-7 text-primary" />
-                  </div>
-                  
-                  <div className="text-4xl font-bold text-primary mb-2">{insight.stat}</div>
-                  <h3 className="text-lg font-semibold text-foreground mb-2">{insight.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{insight.description}</p>
-                </CardContent>
-              </Card>
+            <ScrollReveal
+              key={index}
+              className={index < insights.length - 1 ? "md:border-r border-foreground/[0.08]" : ""}
+              direction="up"
+              delay={index * 110}
+            >
+              <div className="py-10 md:py-14 md:pr-8 group cursor-default">
+                {/* Stat number */}
+                <p className="text-7xl md:text-8xl font-bold text-foreground leading-none mb-4 group-hover:text-primary transition-colors duration-300">
+                  {insight.stat}
+                </p>
+
+                {/* Colored accent line */}
+                <div className={`h-[3px] w-10 ${insight.accent} mb-6 group-hover:w-16 transition-all duration-400`} />
+
+                {/* Title */}
+                <h3 className="text-lg font-bold text-foreground mb-2">
+                  {insight.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {insight.description}
+                </p>
+              </div>
             </ScrollReveal>
           ))}
+        </div>
+
+        {/* Bottom rule */}
+        <div className="w-full h-px bg-foreground/10" />
+
         </div>
       </div>
     </section>

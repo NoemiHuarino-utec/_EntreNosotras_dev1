@@ -1,6 +1,6 @@
 "use client"
 
-import { Sparkles, ArrowRight } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import { ScrollReveal } from "@/components/ui/scroll-reveal"
 import { Button } from "@/components/ui/button"
 
@@ -13,12 +13,22 @@ const benefits = [
 
 export function Solution() {
   return (
-    <section id="solucion" className="py-28 relative overflow-hidden">
+    <section id="solucion" className="min-h-screen flex flex-col relative overflow-hidden">
+
       <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/20 to-accent/20" />
       <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-pulse-soft" />
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse-soft" />
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="flex-1 flex flex-col justify-center py-16 relative z-10">
+      <div className="container mx-auto px-4">
+
+        {/* Section title */}
+        <div className="flex items-center gap-4 mb-16">
+          <span className="text-3xl md:text-4xl font-black uppercase text-primary leading-none tracking-tight whitespace-nowrap">La Solución</span>
+          <div className="flex-1 h-px bg-foreground/15" />
+          <span className="text-xs font-mono text-foreground/35 tracking-[0.2em] flex-shrink-0">03</span>
+        </div>
+
         <div className="grid lg:grid-cols-2 gap-20 items-center max-w-7xl mx-auto">
 
           {/* Visual — Quote / manifesto card */}
@@ -77,14 +87,6 @@ export function Solution() {
           {/* Text content */}
           <ScrollReveal direction="right">
             <div className="order-1 lg:order-2">
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20 px-5 py-2 rounded-full mb-6">
-                <Sparkles className="w-4 h-4 text-primary" />
-                <span className="text-primary font-semibold text-sm uppercase tracking-wider">
-                  La Solución
-                </span>
-              </div>
-
               {/* Heading */}
               <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 text-balance leading-tight">
                 Tu espacio privado de{" "}
@@ -126,6 +128,7 @@ export function Solution() {
             </div>
           </ScrollReveal>
         </div>
+      </div>
       </div>
     </section>
   )

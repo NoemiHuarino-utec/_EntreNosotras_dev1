@@ -2,11 +2,12 @@
 
 import { Button } from "@/components/ui/button"
 import { ScrollReveal } from "@/components/ui/scroll-reveal"
-import { Play, Sparkles, MessageCircle, Heart, BookOpen, Shield } from "lucide-react"
+import { Play, MessageCircle, Heart, BookOpen, Shield, Sparkles } from "lucide-react"
 
 export function Demo() {
   return (
-    <section id="demo" className="py-32 bg-[#1e1830] overflow-hidden relative">
+    <section id="demo" className="min-h-screen flex flex-col bg-[#1e1830] overflow-hidden relative">
+
       {/* Ambient glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px]" />
@@ -14,14 +15,19 @@ export function Demo() {
         <div className="absolute bottom-1/4 left-1/4 w-[250px] h-[250px] bg-violet-500/8 rounded-full blur-[80px]" />
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="flex-1 flex flex-col justify-center py-16 relative z-10">
+      <div className="container mx-auto px-4">
+
+        {/* Section title */}
+        <div className="flex items-center gap-4 mb-12">
+          <span className="text-3xl md:text-4xl font-black uppercase text-primary leading-none tracking-tight whitespace-nowrap">Demo</span>
+          <div className="flex-1 h-px bg-white/15" />
+          <span className="text-xs font-mono text-white/25 tracking-[0.2em] flex-shrink-0">05</span>
+        </div>
+
         {/* Header */}
         <ScrollReveal>
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-primary/20 border border-primary/30 px-4 py-2 rounded-full mb-6">
-              <Sparkles className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium text-primary">Prueba la experiencia</span>
-            </div>
             <h2 className="text-4xl md:text-6xl font-bold text-white mb-4 text-balance">
               Explora el Demo
             </h2>
@@ -136,6 +142,7 @@ export function Demo() {
             <p className="text-white/30 text-sm">Sin registro · 100% gratuito · Disponible ahora</p>
           </div>
         </ScrollReveal>
+      </div>
       </div>
     </section>
   )
