@@ -1,24 +1,33 @@
-import { Heart, Instagram, Twitter, Facebook, Mail } from "lucide-react"
+import { Heart, Instagram, Mail } from "lucide-react"
 
 const socialLinks = [
   { icon: Instagram, href: "#", label: "Instagram" },
-  { icon: Twitter, href: "#", label: "Twitter" },
-  { icon: Facebook, href: "#", label: "Facebook" },
   { icon: Mail, href: "#", label: "Email" }
 ]
 
 const footerLinks = [
   {
     title: "Producto",
-    links: ["Características", "Demo", "Precios", "FAQ"]
+    links: [
+      { name: "Características", href: "#features" },
+      { name: "Demo", href: "#demo" },
+      { name: "Roadmap", href: "#roadmap" }
+    ]
   },
   {
     title: "Recursos",
-    links: ["Blog", "Guías", "Comunidad", "Soporte"]
+    links: [
+      { name: "Biblioteca", href: "#" },
+      { name: "Tips", href: "#" },
+      { name: "FAQ", href: "#" }
+    ]
   },
   {
     title: "Legal",
-    links: ["Privacidad", "Términos", "Cookies"]
+    links: [
+      { name: "Privacidad", href: "#" },
+      { name: "Términos", href: "#" }
+    ]
   }
 ]
 
@@ -44,7 +53,7 @@ export function Footer() {
                 <a
                   key={index}
                   href={social.href}
-                  className="w-10 h-10 bg-card/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors"
+                  className="w-10 h-10 bg-card/10 rounded-full flex items-center justify-center hover:bg-primary hover:scale-110 transition-all duration-300"
                   aria-label={social.label}
                 >
                   <social.icon className="w-5 h-5" />
@@ -61,10 +70,10 @@ export function Footer() {
                 {column.links.map((link, linkIndex) => (
                   <li key={linkIndex}>
                     <a 
-                      href="#" 
+                      href={link.href} 
                       className="text-card/70 hover:text-primary transition-colors"
                     >
-                      {link}
+                      {link.name}
                     </a>
                   </li>
                 ))}
@@ -74,12 +83,12 @@ export function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="border-t border-card/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="border-t border-card/10 pt-8 flex flex-col items-center gap-4">
           <p className="text-card/60 text-sm">
             © 2024 EntreNosotras. Todos los derechos reservados.
           </p>
-          <p className="text-card/60 text-sm flex items-center gap-1">
-            Hecho con <Heart className="w-4 h-4 text-primary fill-primary" /> para mujeres
+          <p className="text-card text-lg flex items-center gap-2 font-medium">
+            Hecho con <Heart className="w-5 h-5 text-primary fill-primary animate-pulse" aria-label="amor" /> para mujeres.
           </p>
         </div>
       </div>

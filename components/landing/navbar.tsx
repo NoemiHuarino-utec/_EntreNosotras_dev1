@@ -5,7 +5,8 @@ import { Button } from "@/components/ui/button"
 import { Heart, Menu, X } from "lucide-react"
 
 const navLinks = [
-  { name: "Inicio", href: "#" },
+  { name: "Inicio", href: "#hero" },
+  { name: "Solución", href: "#solucion" },
   { name: "Características", href: "#features" },
   { name: "Demo", href: "#demo" },
   { name: "Equipo", href: "#team" }
