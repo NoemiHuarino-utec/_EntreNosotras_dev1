@@ -6,7 +6,7 @@ import { Linkedin, Github } from "lucide-react";
 const team = [
     { name: "Noemi Huarino",  avatar: "NH", color: "#a78bfa", photo: "/fotos_equipo/noemi-huarino.jpeg", linkedin: "https://www.linkedin.com/in/noemihuarino/",         github: "https://github.com/NoemiHuarino-utec" },
     { name: "Sandra Aliaga",  avatar: "SA", color: "#f472b6", photo: "/fotos_equipo/sandra-aliaga.jpeg", linkedin: "https://www.linkedin.com/in/sandra-aliaga-03663a324/", github: "https://github.com/sandra-aliaga" },
-    { name: "Karla Bedregal", avatar: "KB", color: "#e879f9", photo: "/fotos_equipo/karla-bredegal.jpeg", linkedin: "#",                                                 github: null },
+    { name: "Karla Bedregal", avatar: "KB", color: "#e879f9", photo: "/fotos_equipo/karla-bredegal.jpeg", linkedin: "https://www.linkedin.com/in/karla-miluska-b-597a441bb/", github: null },
     { name: "Laura Vilca",    avatar: "LV", color: "#818cf8", photo: "/fotos_equipo/laura-vilca.jpeg",   linkedin: "https://www.linkedin.com/in/laura-vilca-b9329126a/", github: null },
     { name: "Kattya Poma",    avatar: "KP", color: "#fb7185", photo: "/fotos_equipo/katty-poma.jpeg",    linkedin: "http://linkedin.com/in/kattyapoma",                  github: null },
 ];
